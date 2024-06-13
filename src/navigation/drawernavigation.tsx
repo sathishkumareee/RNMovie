@@ -10,13 +10,13 @@ const Drawer=createDrawerNavigator()
 
 const Drawernavigation:FC=()=>{
     return(
-       <Drawer.Navigator  
+       <Drawer.Navigator screenOptions={{headerShown:false}} 
     //    drawerContent={(props)=><DrawerContentScrollView {...props}>
     //         <Drawerheader navigation={props.navigation} />
     //         <DrawerItemList {...props} />
     //     </DrawerContentScrollView>}
          >
-        <Drawer.Screen name="Home" component={Bottomnavigation} />
+        <Drawer.Screen name=" " component={Bottomnavigation} />
         <Drawer.Screen name="Activity" component={Activity} />
        </Drawer.Navigator>
     )

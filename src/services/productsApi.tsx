@@ -1,30 +1,30 @@
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { ProductsInterface } from './models/productsInterface'
 
-export const productsApi=createApi({
-    reducerPath:"productsApi",
+export const moviesApi=createApi({
+    reducerPath:"moviesApi",
     baseQuery:fetchBaseQuery({
-        baseUrl:"https://fakestoreapi.com/"
+        baseUrl:"http://192.168.0.100:8000/"
     }),
     //query    - get endpoints
     //mutation - post endpoints
     endpoints:(builder)=>({
-        getProducts:builder.query<ProductsInterface[],void>({
+        getMovies:builder.query<ProductsInterface[],void>({
             query:()=> ({
-                url:"products",
+                url:"movies",
                 method:'GET'
             })
         }),
-        getProductsById:builder.query<ProductsInterface[],void>({
+        getMoviesById:builder.query<ProductsInterface[],void>({
             query:(id)=> ({
-                url:`products/${id}`,
+                url:`movies/${id}`,
                 method:'GET'
             })
         })
     })
 })
 
-export const{useGetProductsQuery,useGetProductsByIdQuery}=productsApi
+export const{useGetMoviesQuery,useGetMoviesByIdQuery}=moviesApi
 
 //default export
 // export const {endpoints,reducer,reducerPath,middleware}=productsApi

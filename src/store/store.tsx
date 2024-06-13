@@ -1,9 +1,14 @@
 import {configureStore} from '@reduxjs/toolkit'
-import { productsApi } from '../services/productsApi'
+import { moviesApi } from '../services/productsApi'
+import watchlistslice from '../slices/watchlistslice'
 
 export const store=configureStore({
     reducer:{
-        [productsApi.reducerPath]:productsApi.reducer
+        [moviesApi.reducerPath]:moviesApi.reducer,
+        watchlist:watchlistslice
     },
-    middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(productsApi.middleware)
+    middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(moviesApi.middleware)
 })
+
+
+export type IRootState = ReturnType<typeof store.getState>

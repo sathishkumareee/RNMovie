@@ -1,55 +1,90 @@
 import React, { useState, useEffect } from 'react';
-import { Text, StyleSheet, View, FlatList, Image,ActivityIndicator } from 'react-native';
-import { useGetProductsByIdQuery, useGetProductsQuery } from './services/productsApi';
+import { Text, StyleSheet, View, FlatList, Image, ActivityIndicator, TextInput } from 'react-native';
+import { useGetMoviesQuery } from './services/productsApi';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-
-export default function Home() {
-    const {data:productsData,error,isLoading,isFetching}=useGetProductsQuery()
-    // const {data:dataById}=useGetProductsByIdQuery(1)
-    console.log(productsData)
-
-
-  return (
-    
-      <View style={{ flex: 1 }}>
-        {isLoading?
-         <View style={[styles.container, styles.horizontal]}>
-         <ActivityIndicator size="large" color="#0000ff" />
-       </View>
-        :
-        <FlatList
-          data={productsData}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={{ width: '95%', height: 150, backgroundColor: '#FFFFFF', borderRadius: 8, alignSelf: 'center', 
-            marginTop: '5%', flexDirection: 'row', }} >
-              <View style={{ width: '45%', height: '100%' }} >
-                <Image style={{ resizeMode: 'contain', width: '100%', height: '100%' }} source={{ uri: String(item.image) }} />
-              </View>
-              <View style={{ flexDirection: 'column', width: '55%' }} >
-                <Text style={{color:'black',fontWeight:'bold', marginStart: '5%'}}>{item.title}</Text>
-                <View style={{ marginTop: '5%' }} >
-                  <Text style={{color:'black',fontWeight:'bold', marginStart: '5%'}} >Price :Rs {String(item.price)}/- </Text>
-                </View>
-                <View style={{flexDirection:'row',justifyContent:"space-evenly",width:'90%'}} >
-                <View style={{width:'40%',backgroundColor:'#FFA31B',borderRadius:8,marginTop:'5%',height:40,justifyContent:'center'}} >
-                    <Text style={{textAlign:'center',fontWeight:'bold',color:'black'}} >Buy Now</Text>
-                </View>
-                <View style={{width:'40%',backgroundColor:'#FFD815',borderRadius:8,marginTop:'5%',height:40,justifyContent:'center'}} >
-                    <Text style={{textAlign:'center',fontWeight:'bold',color:'black'}} >Add to cart</Text>
-                </View>
-                {/* <Text> {item.rating.rate} </Text>
-                <Text> {item.rating.count} </Text> */}
-                </View>
-              </View>
-            </View>
-          )}
-        />}
-      </View>
-    
-  );
+interface HomeProps {
+  navigation: any;
 }
 
+const Home: React.FC<HomeProps> = ({ navigation }) => {
+  const { data: productsData, error, isLoading } = useGetMoviesQuery();
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [filteredData, setFilteredData] = useState(productsData || []);
+  const placeholderImage = 'https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg';
+
+  useEffect(() => {
+    if (productsData) {
+      setFilteredData(productsData);
+    }
+  }, [productsData]);
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (productsData) {
+      const filtered = productsData.filter((item) =>
+        item.Title.toLowerCase().includes(query.toLowerCase())
+      );
+      setFilteredData(filtered);
+    }
+  };
+
+  console.log(productsData);
+
+  if (isLoading) {
+    return (
+      <View style={[styles.container, styles.horizontal]}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text style={{ color: 'red' }}>Error fetching data</Text>
+      </View>
+    );
+  }
+
+  if (!productsData) {
+    return (
+      <View style={styles.container}>
+        <Text style={{ color: 'red' }}>No data available</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={{backgroundColor:'#fff',width:'100%',height:50,justifyContent:'center'}}>
+        <Text style={{marginStart:'5%',fontSize:20,fontWeight:'bold',color:'#000',}}>Trending Movies</Text>
+      </View>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search movies..."
+        value={searchQuery}
+        onChangeText={handleSearch}
+      />
+      <FlatList
+        data={filteredData}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => navigation.navigate('Moviedetails', { item })}>
+            <View style={styles.card}>
+              <Image style={styles.image} source={{ uri: item.Poster ? String(item.Poster) : placeholderImage }} />
+              <View style={styles.infoContainer}>
+                <Text style={styles.title}>{item.Title}</Text>
+                <Text style={styles.year}>Year: {String(item.Year)}</Text>
+                <Text style={styles.runtime}>Runtime: {item.Runtime}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -61,4 +96,47 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     padding: 10,
   },
+  searchInput: {
+    height: 40,
+    borderColor: '#ddd',
+    backgroundColor:'#fff',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 10,
+    margin: 10,
+  },
+  card: {
+    backgroundColor: '#1c1c1c',
+    borderRadius: 20,
+    margin: 10,
+    overflow: 'hidden',
+    elevation: 10, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 2 }, 
+    shadowOpacity: 0.8, 
+    shadowRadius: 2, 
+  },
+  image: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'cover',
+  },
+  infoContainer: {
+    padding: 10,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  year: {
+    fontSize: 16,
+    color: '#ccc',
+  },
+  runtime: {
+    fontSize: 14,
+    color: '#ccc',
+  },
 });
+
+export default Home;

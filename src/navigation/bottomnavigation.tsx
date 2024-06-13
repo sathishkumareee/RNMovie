@@ -4,6 +4,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import Home from "../home";
 import Club from "../club";
 import Leagues from "../leagues";
+import Watchlist from "../watchlist";
+import Profile from "../profile";
 
 const Tab=createBottomTabNavigator()
 
@@ -18,7 +20,7 @@ const Bottomnavigation:FC=()=>{
               />
             ),
           }} />
-            {/* <Tab.Screen name="Club" component={Club} options={{
+            <Tab.Screen name="Watchlist" component={Watchlist} options={{
             tabBarIcon: ({ color }) => (
               <Image
                 source={require('../../assets/football-club.png')}
@@ -26,14 +28,14 @@ const Bottomnavigation:FC=()=>{
               />
             ),
           }}  />
-            <Tab.Screen name="Leagues" component={Leagues} options={{
+            <Tab.Screen name="Profile" component={Profile} options={{
             tabBarIcon: ({ color }) => (
               <Image
                 source={require('../../assets/football.png')}
                 style={[styles.tabIcon, { tintColor: color }]}                
               />
             ),
-          }}  /> */}
+          }}  />
         </Tab.Navigator>
     )
 }

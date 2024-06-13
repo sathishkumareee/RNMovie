@@ -6,6 +6,7 @@ import Login from "../login";
 import Signup from "../signup";
 import { LoginContext } from "../context/logincontext";
 import Drawernavigation from "./drawernavigation";
+import MovieDetails from "../moviedetails";
 
 const Stack=createStackNavigator();
 
@@ -17,6 +18,7 @@ const Stacknavigation:FC=()=>{
             <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Signup" component={Signup} />
+                <Stack.Screen name="Moviedetails" component={MovieDetails} />
                 <Stack.Screen name="Drawer" component={Drawernavigation} />
             </Stack.Navigator>
         </NavigationContainer>

@@ -7,7 +7,8 @@
       "Runtime": "118 min",
       "Poster": "https://m.media-amazon.com/images/M/MV5BMjIwMjE1Nzc4NV5BMl5BanBnXkFtZTgwNDg4OTA1NzM@._V1_SX300.jpg",
       "Rating": "4 / 5",
-      "id": "c92e"
+      "id": "c92e",
+      "Review":"Good"
     },
     {
       "Id": 2,
@@ -16,7 +17,8 @@
       "Runtime": "104 min",
       "Poster": "https://m.media-amazon.com/images/M/MV5BMjMzODc2NzU5MV5BMl5BanBnXkFtZTgwNTMwMTE3NjM@._V1_SX300.jpg",
       "Rating": "2 / 5",
-      "id": "6233"
+      "id": "6233",
+      "Review":"Bad"
     },
     {
       "Id": 3,
@@ -25,7 +27,8 @@
       "Runtime": "115 min",
       "Poster": "https://m.media-amazon.com/images/M/MV5BNjgwNzAzNjk1Nl5BMl5BanBnXkFtZTgwMzQ2NjI1OTE@._V1_SX300.jpg",
       "Rating": "3.5 / 5",
-      "id": "a397"
+      "id": "a397",
+      "Review":"Good"
     },
     {
       "Id": 4,
@@ -34,7 +37,8 @@
       "Runtime": "101 min",
       "Poster": "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_SX300.jpg",
       "Rating": "4.5 / 5",
-      "id": "8329"
+      "id": "8329",
+      "Review":"Bad"
     },
     {
       "Id": 5,
@@ -42,7 +46,8 @@
       "Year": "2004",
       "Runtime": "123 min",
       "Rating": "4.5 / 5",
-      "id": "07e1"
+      "id": "07e1",
+      "Review":"Good"
     }
   ]
 }

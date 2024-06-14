@@ -26,14 +26,14 @@ interface LoginProps {
             <Text style={styles.cred}>Enter Your Credential to login</Text>
             <View style={styles.username} >
             <TextInput 
-            placeholder="Enter Username"
+            placeholder="Username"
             value={text}
             onChangeText={setText}
             />
             </View>
             <View style={styles.pssd} >
             <TextInput 
-            placeholder="Enter Password"
+            placeholder="Password"
             />
             </View>
             <TouchableOpacity onPress={handleLogin} style={styles.logincontainer}>

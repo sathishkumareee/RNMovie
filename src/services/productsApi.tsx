@@ -4,8 +4,7 @@ import { ProductsInterface } from './models/productsInterface'
 export const moviesApi=createApi({
     reducerPath:"moviesApi",
     baseQuery:fetchBaseQuery({
-        // baseUrl:"http://192.168.0.100:8000/"
-        baseUrl:"http://10.0.102.34:8000/"
+        baseUrl:"http://localhost:8000/"
     }),
     //query    - get endpoints
     //mutation - post endpoints

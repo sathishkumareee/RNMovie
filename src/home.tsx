@@ -42,7 +42,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
   if (error) {
     return (
       <View style={styles.container}>
-        <Text style={{ color: 'red' }}>Error fetching data</Text>
+        <Text style={{ color: 'red' ,textAlign:'center',fontSize:18,fontWeight:'bold'}}>Error fetching data</Text>
       </View>
     );
   }

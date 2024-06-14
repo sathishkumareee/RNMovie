@@ -60,7 +60,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = ({ route, navigation }) => {
         </View>
         <View style={styles.row}>
           <Text style={styles.cellLabel}>Movie Reviews:</Text>
-          <Text style={styles.cellValue}>Coming Soon...</Text>
+          <Text style={styles.cellValue}>{movie.Review}</Text>
         </View>
         <View style={styles.row}>
           <Text style={styles.cellLabel}>Rating:</Text>

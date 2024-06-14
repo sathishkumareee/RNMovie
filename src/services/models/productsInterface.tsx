@@ -4,5 +4,6 @@ export interface ProductsInterface{
     "Year": Number,
     "Runtime": String,
     "Poster": String,
-    "Rating":String
+    "Rating":String,
+    "Review":String
 }

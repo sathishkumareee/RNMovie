@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View, Image, StyleSheet, TouchableOpacity, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-// import { FontAwesome } from '@expo/vector-icons'; // Make sure to install expo/vector-icons if not already installed
-interface LogoutProps {
-    navigation: any;
-  }
-const Profile: React.FC<LogoutProps> = ({ navigation }) => {
 
+interface LogoutProps {
+  navigation: any;
+}
+
+const Profile: React.FC<LogoutProps> = ({ navigation }) => {
   const handleLogout = () => {
     // Perform any necessary logout operations
     navigation.replace('Login'); // Use replace to prevent back navigation to Profile
@@ -20,22 +20,22 @@ const Profile: React.FC<LogoutProps> = ({ navigation }) => {
           style={styles.profileImage}
         />
         <TouchableOpacity style={styles.editIcon}>
-          {/* <FontAwesome name="edit" size={24} color="black" /> */}
+          <Image source={require('../assets/edit.png')} style={styles.icon} />
         </TouchableOpacity>
       </View>
       <Text style={styles.profileName}>John Doe</Text>
       <View style={styles.optionsContainer}>
         <TouchableOpacity style={styles.option}>
-          {/* <FontAwesome name="cog" size={24} color="black" /> */}
+          <Image source={require('../assets/setting.png')} style={styles.icon} />
           <Text style={styles.optionText}>Settings</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.option}>
-          {/* <FontAwesome name="bell" size={24} color="black" /> */}
+          <Image source={require('../assets/notification.png')} style={styles.icon} />
           <Text style={styles.optionText}>Notifications</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.option}>
-          {/* <FontAwesome name="sign-out" size={24} color="black" /> */}
-          <Text style={styles.optionText} onPress={handleLogout}>Logout</Text>
+        <TouchableOpacity style={styles.option} onPress={handleLogout}>
+          <Image source={require('../assets/logout.png')} style={styles.icon} />
+          <Text style={styles.optionText}>Logout</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    padding: 20,
+    // padding: 20,
+    marginTop:'5%'
   },
   profileContainer: {
     position: 'relative',
@@ -83,6 +84,10 @@ const styles = StyleSheet.create({
   optionText: {
     marginLeft: 10,
     fontSize: 18,
+  },
+  icon: {
+    width: 24,
+    height: 24,
   },
 });
 

@@ -23,7 +23,7 @@ const Bottomnavigation:FC=()=>{
             <Tab.Screen name="Watchlist" component={Watchlist} options={{
             tabBarIcon: ({ color }) => (
               <Image
-                source={require('../../assets/football-club.png')}
+                source={require('../../assets/bookmark.png')}
                 style={[styles.tabIcon, { tintColor: color }]}                
               />
             ),
@@ -31,7 +31,7 @@ const Bottomnavigation:FC=()=>{
             <Tab.Screen name="Profile" component={Profile} options={{
             tabBarIcon: ({ color }) => (
               <Image
-                source={require('../../assets/football.png')}
+                source={require('../../assets/user.png')}
                 style={[styles.tabIcon, { tintColor: color }]}                
               />
             ),

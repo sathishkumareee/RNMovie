@@ -4,7 +4,8 @@ import { ProductsInterface } from './models/productsInterface'
 export const moviesApi=createApi({
     reducerPath:"moviesApi",
     baseQuery:fetchBaseQuery({
-        baseUrl:"http://192.168.0.100:8000/"
+        // baseUrl:"http://192.168.0.100:8000/"
+        baseUrl:"http://10.0.102.34:8000/"
     }),
     //query    - get endpoints
     //mutation - post endpoints
@@ -20,11 +21,18 @@ export const moviesApi=createApi({
                 url:`movies/${id}`,
                 method:'GET'
             })
-        })
+        }),
+        updateMovieRating: builder.mutation<void, { id: string; rating: string }>({
+            query: ({ id, rating }) => ({
+              url: `movies/${id}`,
+              method: 'PATCH',
+              body: { Rating: rating },
+            }),
+          }),
     })
 })
 
-export const{useGetMoviesQuery,useGetMoviesByIdQuery}=moviesApi
+export const{useGetMoviesQuery,useGetMoviesByIdQuery,useUpdateMovieRatingMutation}=moviesApi
 
 //default export
 // export const {endpoints,reducer,reducerPath,middleware}=productsApi
